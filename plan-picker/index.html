@@ -21,7 +21,7 @@
   </div>
 
   <script type="text/x-template" id="plan-template">
-      <div class="plan">
+      <div class="plan" :class="{'active-plan' : selected}" @click="select">
         <div class="description">
           <span class="title">
             {{name}}
@@ -31,7 +31,12 @@
   </script>
   <script type="text/x-template" id="plan-picker-template">
     <div class="plans">
-      <plan v-for="plan in plans" :name="plan"></plan>
+      <plan 
+        v-for="plan in plans" 
+        :name="plan"
+        :selected="plan === selectedPlan"
+        v-on:select="selectPlan"
+      ></plan>
     </div>
   </script>
   <script src="https://unpkg.com/vue@3"></script>
