@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+</head>
+
+<body>
+
+  <div id="app" class="ui container">
+    <h1>Notification Center</h1>
+    
+    <!-- Notification Message Markup -->
+    <!-- Types: info, warning, error, success -->
+    <div class="ui info message">
+      <i class="close icon"></i>
+      <div class="header">
+        You are eligible for a reward
+      </div>
+      <p>Go to the <b>special offers</b> page to see now.</p>
+    </div>
+
+  </div>
+
+  <!-- Template for Notification Message -->
+  <script type="text/x-template" id="notification-message-template">
+  
+  </script>
+
+  <!-- Import Vue.js -->
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <!-- Your JavaScript Code :) -->
+  <script>
+    Vue.createApp({}).mount('#app')
+  </script>
+</body>
+
+</html> 
