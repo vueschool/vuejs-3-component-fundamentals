@@ -18,35 +18,23 @@
       </h2>
 
       <div class="plans">
-        <div class="plan">
-          <div class="description">
-            <span class="title">
-              The Single
-            </span>
-          </div>
-        </div>
-
-        <div class="plan">
-          <div class="description">
-            <span class="title">
-              The Curious
-            </span>
-          </div>
-        </div>
-
-        <div class="plan">
-          <div class="description">
-            <span class="title">
-              The Addict
-            </span>
-          </div>
-        </div>
+        <plan v-for="plan in plans" :name="plan"></plan>
       </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/vue@3"></script>
-    <script src="app.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <script type="text/x-template" id="plan-template">
+      <div class="plan">
+        <div class="description">
+          <span class="title">
+            {{name}}
+          </span>
+        </div>
+      </div>
+    </script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="style.css">
 </body>
 
 </html>
