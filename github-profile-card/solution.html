@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+</head>
+
+<body>
+
+  <div id="app"
+       class="ui container">
+    <h1>GitHub Profiles</h1>
+    <github-user-card v-for="username in usernames" :username="username"></github-user-card>
+  </div>
+
+  <script type="text/x-template" id="github-user-card-template">
+    <div class="ui card">
+      <div class="image">
+        <img :src="user.avatar_url">
+      </div>
+      <div class="content">
+        <a :href="`https://github.com/${username}`" class="header">{{user.name}}</a>
+        <div class="meta">
+          <span class="date">Joined in {{user.created_at}}</span>
+        </div>
+        <div class="description">
+          {{user.bio}}
+        </div>
+      </div>
+      <div class="extra content">
+        <a :href="`https://github.com/${username}?tab=followers`">
+          <i class="user icon"></i>
+          {{user.followers}} Friends
+        </a>
+      </div>
+    </div>
+  </script>
+  <!-- Import Vue.js and axios -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- Your JavaScript Code :) -->
+  <script>
+    Vue.createApp({
+      data(){
+        return {
+          usernames: ['danielkellyio', 'hootlex', 'rahaug', 'akryum']
+        }
+      }
+    })
+    .component('github-user-card', {
+      template: '#github-user-card-template',
+      props: {
+        username: {type: String, required: true}
+      },
+      data(){
+        return {
+          user: {}
+        }
+      },
+      async created(){
+        const response = await axios.get(`https://api.github.com/users/${this.username}`)
+        this.user = response.data
+      }
+    })
+    .mount('#app')
+  </script>
+</body>
+
+</html>
