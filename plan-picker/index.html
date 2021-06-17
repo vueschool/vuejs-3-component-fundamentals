@@ -12,14 +12,12 @@
   <div id="app" class="container mx-auto py-6">
     <div class="content">
       <h1 class="title">Coffee Plans</h1>
+      <plan-picker></plan-picker>
 
       <h2 class="subtitle">
         We travel the world to source the very best single origin coffee for you
       </h2>
-
-      <div class="plans">
-        <plan v-for="plan in plans" :name="plan"></plan>
-      </div>
+      <plan-picker></plan-picker>
     </div>
   </div>
 
@@ -31,7 +29,12 @@
           </span>
         </div>
       </div>
-    </script>
+  </script>
+  <script type="text/x-template" id="plan-picker-template">
+    <div class="plans">
+      <plan v-for="plan in plans" :name="plan"></plan>
+    </div>
+  </script>
   <script src="https://unpkg.com/vue@3"></script>
   <script src="app.js"></script>
   <link rel="stylesheet" href="style.css">
