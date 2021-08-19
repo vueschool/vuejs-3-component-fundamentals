@@ -15,11 +15,11 @@
       <h2 class="subtitle">
         We travel the world to source the very best single origin coffee for you
       </h2>
-      <plan-picker></plan-picker>
+      <plan-picker-item-template></plan-picker-item-template>
     </div>
   </div>
 
-    <script type="text/x-template" id="plan-template">
+    <script type="text/x-template" id="plan-picker-item-template">
       <div class="plan" :class="{'active-plan': 'selected'}" @click="select">
         <div class="description">
           <span class="title">
@@ -31,13 +31,13 @@
   
     <script type="text/x-template" id="plan-picker-template">
       <div class="plans">
-        <plan
+        <plan-picker-item
           v-for="plan in plans"
           :selected="plan === selectedPlan"
           :name="plan"
           v-on:select="selectPlan"
         >
-      </plan>
+      </plan-picker-item>
       </div>
     </script>
 
