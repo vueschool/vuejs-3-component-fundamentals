@@ -16,32 +16,37 @@
       <h2 class="subtitle">
         We travel the world to source the very best single origin coffee for you
       </h2>
-      <plan-picker></plan-picker>
-    </div>
-  </div>
 
-  <script type="text/x-template" id="plan-picker-item-template">
-      <div class="plan" :class="{'active-plan' : selected}" @click="select">
-        <div class="description">
-          <span class="title">
-            {{name}}
-          </span>
+      <div class="plans">
+        <div class="plan">
+          <div class="description">
+            <span class="title">
+              The Single
+            </span>
+          </div>
+        </div>
+
+        <div class="plan">
+          <div class="description">
+            <span class="title">
+              The Curious
+            </span>
+          </div>
+        </div>
+
+        <div class="plan">
+          <div class="description">
+            <span class="title">
+              The Addict
+            </span>
+          </div>
         </div>
       </div>
-  </script>
-  <script type="text/x-template" id="plan-picker-template">
-    <div class="plans">
-      <plan-picker-item 
-        v-for="plan in plans" 
-        :name="plan"
-        :selected="plan === selectedPlan"
-        v-on:select="selectPlan"
-      ></plan-picker-item>
     </div>
-  </script>
-  <script src="https://unpkg.com/vue@3"></script>
-  <script src="app.js"></script>
-  <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
 </body>
 
 </html>
