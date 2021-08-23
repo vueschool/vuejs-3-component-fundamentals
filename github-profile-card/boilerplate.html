@@ -10,30 +10,38 @@
   <div id="app"
        class="ui container">
     <h1>GitHub Profiles</h1>
-    <github-user-card username="danielkellyio"></github-user-card>
+    <github-user-card
+      v-for="username in usernames"
+      :username="username"
+      :key="username"
+    ></github-user-card>
 
     <!-- Template for GitHub card -->
+
+  </div>
+
+  <script type="text/x-template" id="github-user-card-template">
     <div class="ui card">
       <div class="image">
-        <img src="https://semantic-ui.com/images/avatar2/large/kristy.png">
+        <img :src="detail.avatar_url">
       </div>
       <div class="content">
-        <a class="header">Kristy</a>
+        <a :href="`https://github.com/${detail.login}`" class="header">{{detail.login}}</a>
         <div class="meta">
-          <span class="date">Joined in 2013</span>
+          <span class="date">Joined in {{detail.created_at}}</span>
         </div>
         <div class="description">
-          Kristy is an art director living in New York.
+          {{userBio}}
         </div>
       </div>
       <div class="extra content">
-        <a>
+        <a :href="`https://github.com/${detail.login}?tab=followers`" >
           <i class="user icon"></i>
-          22 Friends
+          {{detail.followers}} Friends
         </a>
       </div>
     </div>
-  </div>
+  </script>
 
   <!-- Import Vue.js and axios -->
   <script src="https://unpkg.com/vue@3"></script>
@@ -41,7 +49,47 @@
 
   <!-- Your JavaScript Code :) -->
   <script>
-    Vue.createApp({}).mount('#app')
+    let GithubUserCardComponent = {
+      template: '#github-user-card-template',
+      props: {
+        username: { type: String, default: 'Poppy', required: true }
+      },
+      data() {
+        return {
+          detail: {},
+        }
+      },
+      computed: {
+        userBio() {
+          const { login, hireable, location, bio } = this.detail ?? {}
+          const description = []
+          if (login) description.push(`${login} is a`)
+          if (hireable) description.push('hireable professional')
+          else description.push('unavailable professional')
+          if (location) description.push(`based on ${location}`)
+          if (bio) description.push(`"${bio}"`)
+
+          return description.join(' ')
+        }
+      },
+      async created() {
+        const username = this.username
+        const response = await axios.get(`https://api.github.com/users/${username}`)
+        this.detail = response.data
+      }
+    }
+
+    Vue.createApp({
+      data() {
+        return {
+          usernames: ['rashiop', 'saripp', 'ppsari', 'stedyyulius'],
+        }
+      },
+      components: {
+        'github-user-card': GithubUserCardComponent
+      }
+    })
+    .mount('#app')
   </script>
 </body>
 
