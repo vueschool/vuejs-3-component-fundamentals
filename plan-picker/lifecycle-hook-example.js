@@ -7,7 +7,7 @@ let BlogPostComponent = {
   },
   async created() {
     const id = this.id
-    const response = axios.get(`api/posts/${id}`)
+    const response = await axios.get(`api/posts/${id}`)
     this.blogPost = response.data
   }
 }

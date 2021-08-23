@@ -11,8 +11,39 @@
 <body>
   <div id="app">
     <h1>Vue.js Slots Fundamentals</h1>
+    <todo-item>
+      Buy Bananas
+      <template #description>
+        <p>
+          Bananas are good for ur health
+        </p>
+      </template>
+      <template #button-text>Texting texting</template>
+    </todo-item>
+    <todo-item>Eat Bananas</todo-item>
+    <todo-item>Celebrate!</todo-item>
+  </div>
+
+  <script type="text/x-template" id="todo-item-template">
+    <div>
+      <input type="checkbox" v-model="done" />
+      <span :class="{ done }">
+        <slot></slot>
+      </span>
+      <slot name="description"></slot>
+      <button><slot name="button-text">Default Placeholder</slot></button>
+    </div>
+  </script>
+  <style>
+    .done{
+      color: green;
+      text-decoration: line-through;
+    }
+  </style>
+
   <script src="https://unpkg.com/vue@3"></script>
   <script src="app.js"></script>
+
 </body>
 
 </html>

@@ -7,6 +7,11 @@ const app = Vue.createApp({
     return {
       done: false
     }
-  }
+  },
+  methods: {
+    onChangeStatus() {
+      this.done = !this.done
+    }
+  },
 })
 .mount('#app')
